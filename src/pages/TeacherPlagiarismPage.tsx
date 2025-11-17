@@ -33,6 +33,7 @@ const TeacherPlagiarismPage = () => {
   const [selectedMatch, setSelectedMatch] = useState<PlagiarismMatch | null>(null);
   const [showVisualization, setShowVisualization] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [thresholdValue, setThresholdValue] = useState<number>(80);
 
   useEffect(() => {
     loadAssignments();
@@ -91,6 +92,7 @@ const TeacherPlagiarismPage = () => {
     setTimeout(async () => {
       const matches: PlagiarismMatch[] = [];
       const isCode = selectedAssignment.type === 'code';
+      const thresholdDecimal = thresholdValue / 100; // Convert 80 to 0.80
 
       // Compare all pairs of submissions
       for (let i = 0; i < submissions.length; i++) {
@@ -108,7 +110,7 @@ const TeacherPlagiarismPage = () => {
             overallScore: result.overallScore,
             algorithms: result.algorithms,
             matchedSegments: result.matchedSegments,
-            isFlagged: result.overallScore >= 0.80, // Flag if similarity >= 80%
+            isFlagged: result.overallScore >= thresholdDecimal, // Use user-defined threshold
           };
 
           matches.push(match);
@@ -305,6 +307,41 @@ const TeacherPlagiarismPage = () => {
                 </Button>
               </div>
             </div>
+
+            {/* Threshold Input */}
+            <Card className="p-4 bg-muted/50">
+              <div className="flex items-center gap-4">
+                <div className="flex-1">
+                  <label className="text-sm font-medium block mb-2">
+                    Similarity Threshold (%)
+                  </label>
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="range"
+                      min="50"
+                      max="100"
+                      step="5"
+                      value={thresholdValue}
+                      onChange={(e) => setThresholdValue(Number(e.target.value))}
+                      className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-primary"
+                    />
+                    <input
+                      type="number"
+                      min="50"
+                      max="100"
+                      step="5"
+                      value={thresholdValue}
+                      onChange={(e) => setThresholdValue(Number(e.target.value))}
+                      className="w-20 px-3 py-1.5 text-center border rounded-md"
+                    />
+                    <span className="text-sm font-semibold text-primary">%</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Submissions with similarity above {thresholdValue}% will be flagged for review
+                  </p>
+                </div>
+              </div>
+            </Card>
 
             {analysis ? (
               <PlagiarismDashboard matches={analysis.matches} onViewMatch={handleViewMatch} />
