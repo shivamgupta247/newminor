@@ -285,10 +285,9 @@ const ProgressPage = () => {
 
       {/* Tabs */}
       <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className={isTeacher ? "grid w-full grid-cols-5" : "grid w-full grid-cols-4"}>
+        <TabsList className={isTeacher ? "grid w-full grid-cols-4" : "grid w-full grid-cols-3"}>
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="badges">Badges</TabsTrigger>
-          <TabsTrigger value="streak">Streak</TabsTrigger>
           {isTeacher && <TabsTrigger value="rating">Rating</TabsTrigger>}
           <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
         </TabsList>
@@ -308,16 +307,6 @@ const ProgressPage = () => {
         {/* Badges Tab */}
         <TabsContent value="badges">
           <BadgeGrid badges={allBadges} showFilter={true} />
-        </TabsContent>
-
-        {/* Streak Tab */}
-        <TabsContent value="streak">
-          <StreakCalendar
-            calendarData={realCalendarData}
-            currentStreak={userProgress?.currentStreak || 0}
-            longestStreak={userProgress?.longestStreak || 0}
-            totalActiveDays={userProgress?.activeDays || 0}
-          />
         </TabsContent>
 
         {/* Rating Tab */}
