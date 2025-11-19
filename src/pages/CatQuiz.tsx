@@ -23,6 +23,14 @@ const CatQuiz = () => {
 
   const stage: QuizStage = !quizState ? 'start' : quizState.isCompleted ? 'results' : 'taking';
 
+  // Ensure fresh start when visiting the quiz page after completion
+  useEffect(() => {
+    if (quizState?.isCompleted) {
+      resetQuiz();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     if (quizState?.isCompleted && quizState.questions?.length) {
       (async () => {
@@ -71,7 +79,9 @@ const CatQuiz = () => {
       
       // UPDATE NEW GAMIFICATION SYSTEM
       // Record activity in new streak system
-      recordActivity('quiz', Math.floor(totalTime / 60));
+      if (user?.id) {
+        recordActivity('quiz', Math.floor(totalTime / 60), user.id);
+      }
       
       // Update rating in new system
       const difficulty = quizState.mode === 'calibration' ? 'medium' : 
@@ -86,7 +96,7 @@ const CatQuiz = () => {
       );
       
       // Check badge progress in new system
-      const newStreak = getUserStreak();
+      const newStreak = getUserStreak(user?.id);
       const newRating = getUserRating();
       checkNewBadges({
         streak: newStreak,

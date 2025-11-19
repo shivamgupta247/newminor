@@ -127,7 +127,7 @@ export const useFirebaseQuiz = () => {
       }
 
       // Update streak in Firebase
-      const streakData = getUserStreak();
+      const streakData = getUserStreak(user.id);
       await updateUserStreak(user.id, {
         current: streakData.currentStreak,
         longest: streakData.longestStreak,

@@ -28,6 +28,14 @@ const GateQuiz = () => {
 
   const stage: QuizStage = !quizState ? 'start' : quizState.isCompleted ? 'results' : 'taking';
   
+  // Ensure fresh start when visiting the quiz page after completion
+  useEffect(() => {
+    if (quizState?.isCompleted) {
+      resetQuiz();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Reset processing flag when quiz is reset or new quiz starts
   useEffect(() => {
     if (!quizState || !quizState.isCompleted) {
@@ -86,8 +94,10 @@ const GateQuiz = () => {
         const newBadges = checkAndAwardBadges(quizAttempt, streakData, quizHistory);
         
         // UPDATE NEW GAMIFICATION SYSTEM
-        // Record activity in new streak system
-        recordActivity('quiz', Math.floor(totalTime / 60));
+        // Record activity in new streak system (user-specific)
+        if (user?.id) {
+          recordActivity('quiz', Math.floor(totalTime / 60), user.id);
+        }
         
         // Update rating in new system
         const difficulty = quizState.mode === 'calibration' ? 'medium' : 

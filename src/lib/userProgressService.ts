@@ -289,13 +289,51 @@ export const recordQuizActivity = (userId: string): void => {
  * Get activity calendar data in StreakData format for last 90 days
  */
 export const getActivityCalendar = (userId: string): any[] => {
-  const key = `activity_calendar_${userId}`;
-  
   try {
-    const data = localStorage.getItem(key);
-    const calendar: { [date: string]: number } = data ? JSON.parse(data) : {};
+    // Read from the user-specific streak system
+    const STREAK_STORAGE_KEY = userId ? `learnwise_user_streak_${userId}` : "learnwise_user_streak";
+    const streakData = localStorage.getItem(STREAK_STORAGE_KEY);
     
-    // Generate last 90 days
+    console.log(`Loading calendar for user: ${userId}, key: ${STREAK_STORAGE_KEY}`);
+    console.log(`Streak data found:`, streakData ? 'Yes' : 'No');
+    
+    if (!streakData) {
+      console.log('No streak data found, returning empty calendar');
+      // Return empty calendar for last 90 days
+      const result: any[] = [];
+      const today = new Date();
+      
+      for (let i = 89; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(date.getDate() - i);
+        const dateStr = date.toISOString().split('T')[0];
+        
+        result.push({
+          date: dateStr,
+          activityCount: 0,
+          quizzesTaken: 0,
+          minutesStudied: 0,
+          blogsRead: 0,
+          blogsCreated: 0,
+        });
+      }
+      
+      return result;
+    }
+    
+    const streak = JSON.parse(streakData);
+    const activityHistory = streak.activityHistory || [];
+    
+    console.log(`Activity history entries: ${activityHistory.length}`);
+    console.log(`Sample activities:`, activityHistory.slice(0, 3));
+    
+    // Create a map of existing activities
+    const activityMap: { [date: string]: any } = {};
+    activityHistory.forEach((activity: any) => {
+      activityMap[activity.date] = activity;
+    });
+    
+    // Generate last 90 days with actual activity data
     const result: any[] = [];
     const today = new Date();
     
@@ -304,20 +342,24 @@ export const getActivityCalendar = (userId: string): any[] => {
       date.setDate(date.getDate() - i);
       const dateStr = date.toISOString().split('T')[0];
       
-      const count = calendar[dateStr] || 0;
+      const activity = activityMap[dateStr];
       
       result.push({
         date: dateStr,
-        activityCount: count,
-        quizzesTaken: count,
-        minutesStudied: count * 15,
-        blogsRead: 0,
-        blogsCreated: 0,
+        activityCount: activity?.activityCount || 0,
+        quizzesTaken: activity?.quizzesTaken || 0,
+        minutesStudied: activity?.minutesStudied || 0,
+        blogsRead: activity?.blogsRead || 0,
+        blogsCreated: activity?.blogsCreated || 0,
       });
     }
     
+    const activeDays = result.filter(d => d.activityCount > 0).length;
+    console.log(`Calendar generated: ${result.length} days, ${activeDays} active days`);
+    
     return result;
-  } catch {
+  } catch (error) {
+    console.error('Error getting activity calendar:', error);
     return [];
   }
 };

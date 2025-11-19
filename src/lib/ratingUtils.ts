@@ -193,9 +193,9 @@ const updateRatingTrend = (rating: UserRating): void => {
 /**
  * Get rating breakdown
  */
-export const getRatingBreakdown = (): RatingBreakdown => {
+export const getRatingBreakdown = (userId?: string): RatingBreakdown => {
   const rating = getUserRating();
-  const streak = getUserStreak();
+  const streak = getUserStreak(userId);
 
   const base = 1000;
   
@@ -286,9 +286,9 @@ export const getRatingMilestones = (): RatingMilestone[] => {
 /**
  * Get personalized improvement tips
  */
-export const getImprovementTips = (): string[] => {
+export const getImprovementTips = (userId?: string): string[] => {
   const rating = getUserRating();
-  const streak = getUserStreak();
+  const streak = getUserStreak(userId);
   const current = rating.current;
   const tips: string[] = [];
 

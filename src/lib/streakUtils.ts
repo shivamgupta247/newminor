@@ -1,6 +1,11 @@
 import { UserStreak, StreakData, StreakStats } from "@/types/gamification";
 
-const STREAK_STORAGE_KEY = "learnwise_user_streak";
+/**
+ * Get storage key for specific user
+ */
+const getStreakStorageKey = (userId?: string): string => {
+  return userId ? `learnwise_user_streak_${userId}` : "learnwise_user_streak";
+};
 
 /**
  * Get today's date in YYYY-MM-DD format
@@ -45,9 +50,9 @@ const initializeStreak = (): UserStreak => {
 /**
  * Get user's streak data from localStorage
  */
-export const getUserStreak = (): UserStreak => {
+export const getUserStreak = (userId?: string): UserStreak => {
   try {
-    const stored = localStorage.getItem(STREAK_STORAGE_KEY);
+    const stored = localStorage.getItem(getStreakStorageKey(userId));
     if (!stored) return initializeStreak();
     return JSON.parse(stored);
   } catch (error) {
@@ -59,9 +64,9 @@ export const getUserStreak = (): UserStreak => {
 /**
  * Save user's streak data to localStorage
  */
-export const saveUserStreak = (streak: UserStreak): void => {
+export const saveUserStreak = (streak: UserStreak, userId?: string): void => {
   try {
-    localStorage.setItem(STREAK_STORAGE_KEY, JSON.stringify(streak));
+    localStorage.setItem(getStreakStorageKey(userId), JSON.stringify(streak));
   } catch (error) {
     console.error("Error saving streak to localStorage:", error);
   }
@@ -70,8 +75,8 @@ export const saveUserStreak = (streak: UserStreak): void => {
 /**
  * Get activity data for a specific date
  */
-export const getActivityForDate = (date: string): StreakData | undefined => {
-  const streak = getUserStreak();
+export const getActivityForDate = (date: string, userId?: string): StreakData | undefined => {
+  const streak = getUserStreak(userId);
   return streak.activityHistory.find((activity) => activity.date === date);
 };
 
@@ -80,10 +85,13 @@ export const getActivityForDate = (date: string): StreakData | undefined => {
  */
 export const recordActivity = (
   type: "quiz" | "study" | "blog_read" | "blog_create",
-  minutes: number = 0
+  minutes: number = 0,
+  userId?: string
 ): void => {
-  const streak = getUserStreak();
+  const streak = getUserStreak(userId);
   const today = getTodayDate();
+  
+  console.log(`Recording activity for user: ${userId || 'global'}, type: ${type}, date: ${today}`);
   
   // Find or create today's activity
   let todayActivity = streak.activityHistory.find((a) => a.date === today);
@@ -107,10 +115,13 @@ export const recordActivity = (
   if (type === "blog_read") todayActivity.blogsRead++;
   if (type === "blog_create") todayActivity.blogsCreated++;
 
+  console.log(`Activity recorded - Total activities today: ${todayActivity.activityCount}, Quizzes: ${todayActivity.quizzesTaken}`);
+
   // Update streak
   updateStreak(streak, today);
   
-  saveUserStreak(streak);
+  saveUserStreak(streak, userId);
+  console.log(`Streak saved for user: ${userId || 'global'}, current streak: ${streak.currentStreak}`);
 };
 
 /**
@@ -150,8 +161,8 @@ const updateStreak = (streak: UserStreak, today: string): void => {
 /**
  * Use a streak freeze
  */
-export const useStreakFreeze = (): boolean => {
-  const streak = getUserStreak();
+export const useStreakFreeze = (userId?: string): boolean => {
+  const streak = getUserStreak(userId);
   
   if (streak.freezesRemaining <= 0) return false;
 
@@ -161,15 +172,15 @@ export const useStreakFreeze = (): boolean => {
   lastDate.setDate(lastDate.getDate() + 1);
   streak.lastActivityDate = lastDate.toISOString().split("T")[0];
 
-  saveUserStreak(streak);
+  saveUserStreak(streak, userId);
   return true;
 };
 
 /**
  * Get streak statistics
  */
-export const getStreakStats = (): StreakStats => {
-  const streak = getUserStreak();
+export const getStreakStats = (userId?: string): StreakStats => {
+  const streak = getUserStreak(userId);
   const today = getTodayDate();
   const thisMonth = today.substring(0, 7); // YYYY-MM
 
@@ -200,9 +211,10 @@ export const getStreakStats = (): StreakStats => {
  */
 export const getActivityHistory = (
   startDate: string,
-  endDate: string
+  endDate: string,
+  userId?: string
 ): StreakData[] => {
-  const streak = getUserStreak();
+  const streak = getUserStreak(userId);
   return streak.activityHistory.filter(
     (a) => a.date >= startDate && a.date <= endDate
   );
@@ -222,8 +234,8 @@ export const getActivityIntensity = (activityCount: number): number => {
 /**
  * Get calendar data for the last N months
  */
-export const getCalendarData = (months: number = 12): StreakData[] => {
-  const streak = getUserStreak();
+export const getCalendarData = (months: number = 12, userId?: string): StreakData[] => {
+  const streak = getUserStreak(userId);
   const today = new Date();
   const startDate = new Date(today);
   startDate.setMonth(startDate.getMonth() - months);
@@ -255,8 +267,8 @@ export const getCalendarData = (months: number = 12): StreakData[] => {
 /**
  * Check if streak is at risk (no activity today)
  */
-export const isStreakAtRisk = (): boolean => {
-  const streak = getUserStreak();
+export const isStreakAtRisk = (userId?: string): boolean => {
+  const streak = getUserStreak(userId);
   const today = getTodayDate();
   const lastDate = streak.lastActivityDate;
 
@@ -269,8 +281,8 @@ export const isStreakAtRisk = (): boolean => {
 /**
  * Get streak message
  */
-export const getStreakMessage = (): string => {
-  const streak = getUserStreak();
+export const getStreakMessage = (userId?: string): string => {
+  const streak = getUserStreak(userId);
   const current = streak.currentStreak;
 
   if (current === 0) {
@@ -292,8 +304,8 @@ export const getStreakMessage = (): string => {
  * Initialize sample activity data for demonstration (last 30 days)
  * Call this once to populate the calendar with sample data
  */
-export const initializeSampleActivityData = (): void => {
-  const streak = getUserStreak();
+export const initializeSampleActivityData = (userId?: string): void => {
+  const streak = getUserStreak(userId);
   
   // Only initialize if there's no activity history
   if (streak.activityHistory.length > 0) {
@@ -349,6 +361,6 @@ export const initializeSampleActivityData = (): void => {
   streak.totalActiveDays = totalDays;
   streak.lastActivityDate = lastActivityDate;
 
-  saveUserStreak(streak);
+  saveUserStreak(streak, userId);
   console.log("✅ Sample activity data initialized for the last 30 days");
 };

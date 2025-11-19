@@ -9,39 +9,43 @@ import {
   getStreakMessage,
   useStreakFreeze,
 } from "@/lib/streakUtils";
+import { useAuth } from "@/contexts/AuthContext";
 
 export const useStreak = () => {
-  const [streak, setStreak] = useState<UserStreak>(getUserStreak());
-  const [stats, setStats] = useState(getStreakStats());
+  const { user } = useAuth();
+  const userId = user?.id;
+  
+  const [streak, setStreak] = useState<UserStreak>(getUserStreak(userId));
+  const [stats, setStats] = useState(getStreakStats(userId));
   const [calendarData, setCalendarData] = useState<StreakData[]>([]);
   const [atRisk, setAtRisk] = useState(false);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   const loadStreak = () => {
-    const streakData = getUserStreak();
+    const streakData = getUserStreak(userId);
     setStreak(streakData);
-    setStats(getStreakStats());
-    setCalendarData(getCalendarData(12));
-    setAtRisk(isStreakAtRisk());
-    setMessage(getStreakMessage());
+    setStats(getStreakStats(userId));
+    setCalendarData(getCalendarData(12, userId));
+    setAtRisk(isStreakAtRisk(userId));
+    setMessage(getStreakMessage(userId));
     setIsLoading(false);
   };
 
   useEffect(() => {
     loadStreak();
-  }, []);
+  }, [userId]);
 
   const logActivity = (
     type: "quiz" | "study" | "blog_read" | "blog_create",
     minutes: number = 0
   ) => {
-    recordActivity(type, minutes);
+    recordActivity(type, minutes, userId);
     loadStreak();
   };
 
   const applyFreeze = (): boolean => {
-    const success = useStreakFreeze();
+    const success = useStreakFreeze(userId);
     if (success) {
       loadStreak();
     }

@@ -17,7 +17,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { UserProgress } from "@/types/userProgress";
 
 const ProgressPage = () => {
-  const { user } = useAuth();
+  const { user, isTeacher } = useAuth();
   
   // Safely load hooks with fallbacks
   let allBadges: any[] = [];
@@ -230,18 +230,6 @@ const ProgressPage = () => {
                 <div className="text-2xl font-bold text-orange-600">{userProgress.currentStreak} 🔥</div>
               </div>
             </div>
-            
-            {/* Badges Display */}
-            <div className="mt-6 pt-6 border-t">
-              <div className="text-sm text-muted-foreground mb-3">Your Badges</div>
-              <div className="flex flex-wrap gap-2">
-                {userProgress.badges.map((badge, index) => (
-                  <Badge key={index} variant="secondary" className="text-base px-3 py-1">
-                    {badge}
-                  </Badge>
-                ))}
-              </div>
-            </div>
           </CardContent>
         </Card>
       )}
@@ -297,11 +285,11 @@ const ProgressPage = () => {
 
       {/* Tabs */}
       <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className={isTeacher ? "grid w-full grid-cols-5" : "grid w-full grid-cols-4"}>
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="badges">Badges</TabsTrigger>
           <TabsTrigger value="streak">Streak</TabsTrigger>
-          <TabsTrigger value="rating">Rating</TabsTrigger>
+          {isTeacher && <TabsTrigger value="rating">Rating</TabsTrigger>}
           <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
         </TabsList>
 
