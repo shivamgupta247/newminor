@@ -635,4 +635,5 @@ If you find this project helpful, please consider:
 </div>
 #   n e w m i n o r  
  #   N e w M i n o r  
+ #   N e w M i n o r  
  
