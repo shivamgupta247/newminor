@@ -43,116 +43,7 @@ export const newsData = [
   }
 ];
 export const blogData = [
-  {
-    id: 1,
-    title: "10 Effective Study Techniques for Competitive Exams",
-    excerpt: "Discover proven study methods that can dramatically improve your exam performance and retention rates.",
-    content: "Here is a detailed article about 10 effective study techniques. Use spaced repetition, active recall, and practice tests to maximize your retention. Stay organized and take regular breaks for best results. Understanding your learning style is crucial for selecting the right techniques. Create a study environment that minimizes distractions and enhances focus. Combine multiple techniques for better results and long-term retention. Track your progress regularly to identify areas needing improvement. Remember that consistency matters more than intensive cramming sessions.",
-    author: "Dr. Sarah Johnson",
-    date: "2024-01-12",
-    readTime: "8 min read",
-    category: "Study Tips",
-    image: blogStudyImg
-  },
-  {
-    id: 2,
-    title: "Time Management Strategies for GATE Preparation",
-    excerpt: "Learn how to optimize your study schedule and manage time effectively during GATE preparation.",
-    content: "This article covers time management tips for GATE. Prioritize topics, set realistic goals, and use a planner. Regular revision and mock tests are key to success. Break down your syllabus into manageable weekly targets to avoid overwhelming yourself. Allocate more time to challenging subjects while maintaining touch with easier topics. Use time-blocking techniques to dedicate specific hours to different subjects. Analyze your mock test performance to optimize your study schedule accordingly. Leave buffer time for unexpected challenges and additional revision needs. Balance preparation with adequate rest to maintain peak cognitive performance.",
-    author: "Prof. Rajesh Kumar",
-    date: "2024-01-10",
-    readTime: "6 min read",
-    category: "GATE",
-    image: blogTimeImg
-  },
-  {
-    id: 3,
-    title: "Mental Health During Exam Preparation",
-    excerpt: "Maintaining psychological well-being while preparing for competitive exams is crucial for success.",
-    content: "Maintaining mental health is crucial. Practice mindfulness, take breaks, and seek support when needed. Balance your studies with relaxation and hobbies. Recognize early signs of burnout such as fatigue, irritability, and declining motivation. Establish a support network of friends, family, and peers who understand your journey. Exercise regularly to release endorphins and reduce stress hormones naturally. Get adequate sleep as it's essential for memory consolidation and cognitive function. Don't hesitate to consult mental health professionals if anxiety becomes overwhelming. Remember that your well-being is more important than any exam result.",
-    author: "Dr. Priya Sharma",
-    date: "2024-01-08",
-    readTime: "7 min read",
-    category: "Wellness",
-    image: blogMentalImg
-  },
-  {
-    id: 4,
-    title: "Latest EdTech Innovations in 2025",
-    excerpt: "Explore how technology is transforming education and exam prep.",
-    content: "Explore how technology is transforming education and exam prep. From AI tutors to adaptive learning platforms, technology is making learning more personalized and effective. Virtual reality classrooms are creating immersive learning experiences for complex concepts. Gamification elements are increasing student engagement and making learning more enjoyable. Data analytics help educators identify student weaknesses and customize interventions accordingly. Blockchain technology is being used to verify credentials and create portable learning records. Mobile learning apps enable students to study anytime, anywhere at their convenience. The integration of IoT devices is creating smart classrooms with enhanced interactive capabilities.",
-    author: "Amit Verma",
-    date: "2024-02-01",
-    readTime: "5 min read",
-    category: "Technology",
-    image: blogTechImg
-  },
-  {
-    id: 5,
-    title: "From Failure to GATE Topper: The Story of Neha Singh",
-    excerpt: "After two failed attempts, Neha cracked GATE 2024 with AIR 58. Read how persistence changed her journey.",
-    content: "After facing setbacks in two attempts, Neha's journey to becoming a GATE topper is truly inspiring. She restructured her approach, focused on fundamentals, and maintained consistency in her preparation. Her story teaches us that failure is not the end, but a stepping stone to success. Neha analyzed her previous mistakes and identified knowledge gaps systematically. She joined a study group which provided motivation and accountability throughout her journey. Regular self-assessment through mock tests helped her track improvement and build confidence. She developed a positive mindset by celebrating small wins and learning from setbacks. Her dedication to understanding concepts deeply rather than rote memorization paid off. Neha's transformation shows that perseverance and smart work can overcome initial failures.",
-    author: "Editorial Team",
-    date: "2024-01-05",
-    readTime: "5 min read",
-    category: "Success Stories",
-    image: blogSuccessImg
-  },
-  {
-    id: 6,
-    title: "Pomodoro Technique: Boost Focus in 25-Minute Intervals",
-    excerpt: "A time-tested productivity method that helps students maintain focus and avoid burnout during long study hours.",
-    content: "The Pomodoro Technique is a time management method that uses a timer to break work into focused 25-minute intervals, separated by short breaks. This approach helps maintain high levels of focus while preventing mental fatigue. Learn how to implement this technique effectively in your study routine. Choose a single task to focus on during each Pomodoro session. After four Pomodoros, take a longer break of 15-30 minutes to recharge. Eliminate all distractions including phone notifications during your focused intervals. Track completed Pomodoros to measure productivity and identify peak performance times. Adjust interval lengths based on your personal focus capacity and subject complexity. The technique works best when combined with proper planning and task prioritization.",
-    author: "Ritika Patel",
-    date: "2024-01-04",
-    readTime: "6 min read",
-    category: "Study Tips",
-    image: blogPomodoroImg
-  },
-  {
-    id: 7,
-    title: "GATE 2025 Syllabus Simplified: Key Changes & Topics to Focus",
-    excerpt: "A breakdown of the latest syllabus changes for GATE 2025, including high-weightage subjects and expert tips.",
-    content: "A comprehensive analysis of the GATE 2025 syllabus changes. We break down the high-weightage topics, highlight new additions, and provide strategic advice for preparation. Special focus on updated sections and recommended study resources. New emphasis on application-based questions requires deeper conceptual understanding rather than memorization. Data structures and algorithms now carry increased weightage in computer science papers. Environmental engineering topics have been updated to reflect current sustainability challenges. Machine learning fundamentals have been added to several engineering streams. The exam pattern now includes more multi-select questions testing comprehensive knowledge. Updated reference materials and standard textbooks are recommended for thorough coverage.",
-    author: "Prof. Manish Tiwari",
-    date: "2024-01-03",
-    readTime: "8 min read",
-    category: "GATE",
-    image: blogGateImg
-  },
-  {
-    id: 8,
-    title: "Mindfulness Techniques to Beat Exam Anxiety",
-    excerpt: "Learn practical breathing and mindfulness exercises to stay calm and confident before and during exams.",
-    content: "Discover practical mindfulness exercises designed specifically for students. Learn breathing techniques, meditation practices, and stress-management strategies that can help you stay calm and focused during exam preparation and on the big day. Practice the 4-7-8 breathing technique to activate your parasympathetic nervous system instantly. Body scan meditation helps identify and release physical tension caused by stress. Mindful walking breaks can refresh your mind between intense study sessions. Visualization exercises build confidence by mentally rehearsing successful exam performance. Keep a gratitude journal to maintain perspective and positive mental state. Progressive muscle relaxation techniques reduce physical symptoms of anxiety effectively.",
-    author: "Dr. Aisha Khan",
-    date: "2024-01-02",
-    readTime: "7 min read",
-    category: "Wellness",
-    image: blogMindfulnessImg
-  },
-  {
-    id: 9,
-    title: "AI in Education: How Smart Systems Personalize Learning",
-    excerpt: "Artificial Intelligence is reshaping education by offering customized learning paths and real-time feedback.",
-    content: "An in-depth look at how AI is revolutionizing education. From adaptive learning algorithms to intelligent tutoring systems, explore how technology is creating personalized learning experiences. Real-world examples and future trends in educational technology. AI-powered assessment tools provide instant feedback and identify learning gaps accurately. Natural language processing enables conversational interfaces for doubt resolution anytime. Predictive analytics help forecast student performance and suggest intervention strategies early. Personalized content recommendations ensure students focus on relevant materials for their level. Automated grading systems free up educators to focus on mentoring and guidance. Ethical considerations around data privacy and algorithmic bias remain important challenges.",
-    author: "Rahul Mehta",
-    date: "2024-01-01",
-    readTime: "10 min read",
-    category: "Technology",
-    image: blogAIImg
-  },
-  {
-    id: 10,
-    title: "The Journey of a Self-Taught Programmer Who Landed at Google",
-    excerpt: "A small-town student shares how consistent practice, open-source contributions, and coding contests led to success.",
-    content: "An inspiring story of determination and self-learning. Follow the journey from writing the first line of code to clearing Google's technical interviews. Includes practical advice on self-study, project building, and interview preparation. Started with free online resources like freeCodeCamp and gradually progressed to advanced topics. Built a portfolio of diverse projects demonstrating problem-solving skills and technical proficiency. Contributed to open-source projects to gain real-world development experience and community recognition. Practiced data structures and algorithms daily on platforms like LeetCode and HackerRank. Networked with professionals through tech meetups and online communities for mentorship. The key was maintaining consistent daily practice and never giving up despite initial rejections.",
-    author: "Team LearnWise",
-    date: "2023-12-30",
-    readTime: "9 min read",
-    category: "Success Stories",
-    image: blogJourneyImg
-  }
+
 ];
 
 export const gateData = {
@@ -185,7 +76,7 @@ export const gateData = {
       downloadUrl: "https://www.youtube.com/watch?v=kBdlM6hNDAE&list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y"
     }
   ],
-  
+
   previousPapers: [
     {
       id: 1,
@@ -224,7 +115,7 @@ export const gateData = {
       downloadUrl: "https://www.geeksforgeeks.org/gate-cs-previous-year-papers/"
     }
   ],
-  
+
   updates: [
     {
       id: 1,
@@ -248,7 +139,7 @@ export const gateData = {
       content: "Free mock test series for GATE 2025 is now available. Attempt unlimited practice tests."
     }
   ],
-  
+
   syllabus: {
     "Engineering Mathematics": [
       "Linear Algebra",
@@ -304,97 +195,97 @@ export const quizQuestions: {
   difficulty: 'Easy' | 'Medium' | 'Hard';
   topic?: string;
 }[] = [
-  {
-    id: 1,
-    question: "What is the time complexity of binary search in a sorted array?",
-    options: ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
-    correctAnswer: 1,
-    explanation: "Binary search divides the search space in half at each step, resulting in O(log n) time complexity.",
-    subject: "Algorithms",
-    difficulty: "Easy",
-    topic: "Searching"
-  },
-  {
-    id: 2,
-    question: "Which data structure uses LIFO (Last In First Out) principle?",
-    options: ["Queue", "Stack", "Array", "Linked List"],
-    correctAnswer: 1,
-    explanation: "Stack follows LIFO principle where the last element inserted is the first one to be removed.",
-    subject: "Data Structures",
-    difficulty: "Easy",
-    topic: "Stacks"
-  },
-  {
-    id: 3,
-    question: "In a binary tree, what is the maximum number of nodes at level k?",
-    options: ["2^k", "2^(k-1)", "2^(k+1)", "k^2"],
-    correctAnswer: 0,
-    explanation: "At level k in a binary tree, there can be at most 2^k nodes (considering root at level 0).",
-    subject: "Data Structures",
-    difficulty: "Medium",
-    topic: "Trees"
-  },
-  {
-    id: 4,
-    question: "Which sorting algorithm has the best average case time complexity?",
-    options: ["Bubble Sort", "Selection Sort", "Merge Sort", "Insertion Sort"],
-    correctAnswer: 2,
-    explanation: "Merge Sort has O(n log n) time complexity in all cases (best, average, and worst).",
-    subject: "Algorithms",
-    difficulty: "Medium",
-    topic: "Sorting"
-  },
-  {
-    id: 5,
-    question: "What is the space complexity of the recursive fibonacci function?",
-    options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
-    correctAnswer: 1,
-    explanation: "The recursive fibonacci function has O(n) space complexity due to the recursion call stack.",
-    subject: "Algorithms",
-    difficulty: "Hard",
-    topic: "Recursion"
-  },
-  {
-    id: 6,
-    question: "Which data structure is best for implementing a priority queue?",
-    options: ["Stack", "Queue", "Heap", "Deque"],
-    correctAnswer: 2,
-    explanation: "Heaps provide efficient insertion and extraction of the highest (or lowest) priority element.",
-    subject: "Data Structures",
-    difficulty: "Easy",
-    topic: "Heaps"
-  },
-  {
-    id: 7,
-    question: "Dijkstra's algorithm cannot handle which type of edges?",
-    options: ["Positive weighted edges", "Zero weighted edges", "Negative weighted edges", "All of the above"],
-    correctAnswer: 2,
-    explanation: "Dijkstra's algorithm assumes non-negative edge weights to guarantee optimality.",
-    subject: "Algorithms",
-    difficulty: "Medium",
-    topic: "Graphs"
-  },
-  {
-    id: 8,
-    question: "Which traversal of a BST yields a sorted sequence?",
-    options: ["Preorder", "Inorder", "Postorder", "Level order"],
-    correctAnswer: 1,
-    explanation: "Inorder traversal of a BST visits nodes in non-decreasing key order.",
-    subject: "Data Structures",
-    difficulty: "Hard",
-    topic: "BST"
-  },
-  {
-    id: 9,
-    question: "What is the master theorem case for T(n) = 2T(n/2) + n?",
-    options: ["Case 1: n^{log_b a - ε}", "Case 2: n^{log_b a} log^k n", "Case 3: n^{log_b a + ε}", "Not applicable"],
-    correctAnswer: 1,
-    explanation: "Here a=2, b=2 so n^{log_b a} = n; f(n) = n so Case 2 applies, yielding T(n)=Θ(n log n).",
-    subject: "Algorithms",
-    difficulty: "Hard",
-    topic: "Recurrences"
-  }
-];
+    {
+      id: 1,
+      question: "What is the time complexity of binary search in a sorted array?",
+      options: ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
+      correctAnswer: 1,
+      explanation: "Binary search divides the search space in half at each step, resulting in O(log n) time complexity.",
+      subject: "Algorithms",
+      difficulty: "Easy",
+      topic: "Searching"
+    },
+    {
+      id: 2,
+      question: "Which data structure uses LIFO (Last In First Out) principle?",
+      options: ["Queue", "Stack", "Array", "Linked List"],
+      correctAnswer: 1,
+      explanation: "Stack follows LIFO principle where the last element inserted is the first one to be removed.",
+      subject: "Data Structures",
+      difficulty: "Easy",
+      topic: "Stacks"
+    },
+    {
+      id: 3,
+      question: "In a binary tree, what is the maximum number of nodes at level k?",
+      options: ["2^k", "2^(k-1)", "2^(k+1)", "k^2"],
+      correctAnswer: 0,
+      explanation: "At level k in a binary tree, there can be at most 2^k nodes (considering root at level 0).",
+      subject: "Data Structures",
+      difficulty: "Medium",
+      topic: "Trees"
+    },
+    {
+      id: 4,
+      question: "Which sorting algorithm has the best average case time complexity?",
+      options: ["Bubble Sort", "Selection Sort", "Merge Sort", "Insertion Sort"],
+      correctAnswer: 2,
+      explanation: "Merge Sort has O(n log n) time complexity in all cases (best, average, and worst).",
+      subject: "Algorithms",
+      difficulty: "Medium",
+      topic: "Sorting"
+    },
+    {
+      id: 5,
+      question: "What is the space complexity of the recursive fibonacci function?",
+      options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+      correctAnswer: 1,
+      explanation: "The recursive fibonacci function has O(n) space complexity due to the recursion call stack.",
+      subject: "Algorithms",
+      difficulty: "Hard",
+      topic: "Recursion"
+    },
+    {
+      id: 6,
+      question: "Which data structure is best for implementing a priority queue?",
+      options: ["Stack", "Queue", "Heap", "Deque"],
+      correctAnswer: 2,
+      explanation: "Heaps provide efficient insertion and extraction of the highest (or lowest) priority element.",
+      subject: "Data Structures",
+      difficulty: "Easy",
+      topic: "Heaps"
+    },
+    {
+      id: 7,
+      question: "Dijkstra's algorithm cannot handle which type of edges?",
+      options: ["Positive weighted edges", "Zero weighted edges", "Negative weighted edges", "All of the above"],
+      correctAnswer: 2,
+      explanation: "Dijkstra's algorithm assumes non-negative edge weights to guarantee optimality.",
+      subject: "Algorithms",
+      difficulty: "Medium",
+      topic: "Graphs"
+    },
+    {
+      id: 8,
+      question: "Which traversal of a BST yields a sorted sequence?",
+      options: ["Preorder", "Inorder", "Postorder", "Level order"],
+      correctAnswer: 1,
+      explanation: "Inorder traversal of a BST visits nodes in non-decreasing key order.",
+      subject: "Data Structures",
+      difficulty: "Hard",
+      topic: "BST"
+    },
+    {
+      id: 9,
+      question: "What is the master theorem case for T(n) = 2T(n/2) + n?",
+      options: ["Case 1: n^{log_b a - ε}", "Case 2: n^{log_b a} log^k n", "Case 3: n^{log_b a + ε}", "Not applicable"],
+      correctAnswer: 1,
+      explanation: "Here a=2, b=2 so n^{log_b a} = n; f(n) = n so Case 2 applies, yielding T(n)=Θ(n log n).",
+      subject: "Algorithms",
+      difficulty: "Hard",
+      topic: "Recurrences"
+    }
+  ];
 
 export const examOptions = [
   {

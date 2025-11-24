@@ -28,7 +28,7 @@ export default function Blogs() {
     try {
       // Get Firebase blogs
       const firebaseBlogs = await getPublishedBlogs();
-      
+
       // Convert Firebase blogs to Blog format
       const convertedFirebaseBlogs: Blog[] = firebaseBlogs.map((fb, index) => ({
         id: 1000 + index, // Start from 1000 to avoid conflicts
@@ -51,7 +51,7 @@ export default function Blogs() {
       }));
 
       const combined = [...convertedFirebaseBlogs, ...staticBlogs];
-      
+
       // Sort by date (newest first)
       combined.sort((a, b) => {
         const dateA = new Date(a.date).getTime();
@@ -78,7 +78,7 @@ export default function Blogs() {
   return (
     <div className="container mx-auto py-12 px-4">
       <BlogsHeader />
-      
+
       {/* Create Blog Button - Only for Teachers */}
       {isTeacher && (
         <div className="flex justify-end mb-6">
@@ -100,12 +100,12 @@ export default function Blogs() {
         </div>
       ) : (
         <>
-          <BlogsSearchFilter 
+          <BlogsSearchFilter
             onFilterChange={setFilteredBlogs}
             allBlogs={allBlogs}
           />
-          <BlogGrid 
-            blogs={filteredBlogs} 
+          <BlogGrid
+            blogs={filteredBlogs}
             onReadMore={setSelectedBlogId}
             selectedBlogId={selectedBlogId}
           />

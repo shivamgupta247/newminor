@@ -11,7 +11,7 @@ export const getAllBlogs = (): Blog[] => {
     ...blog,
     isUserCreated: false
   }));
-  
+
   const localBlogs = getLocalBlogs().map(blog => ({
     ...blog,
     isUserCreated: true
@@ -19,7 +19,7 @@ export const getAllBlogs = (): Blog[] => {
 
   // Combine and sort by date (newest first)
   const allBlogs = [...localBlogs, ...staticBlogs];
-  
+
   return allBlogs.sort((a, b) => {
     const dateA = new Date(a.date).getTime();
     const dateB = new Date(b.date).getTime();
@@ -42,7 +42,7 @@ export const getBlogsByCategory = (category: string): Blog[] => {
  */
 export const searchBlogs = (query: string, category: string = "All"): Blog[] => {
   const blogs = category === "All" ? getAllBlogs() : getBlogsByCategory(category);
-  
+
   if (!query.trim()) {
     return blogs;
   }
